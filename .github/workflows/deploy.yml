@@ -7,42 +7,53 @@ on:
     branches: [ main ]
   workflow_dispatch:
 
+# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
 jobs:
   validate:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       
       - name: Setup Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 20
       
-      - name: Install HTML validator
-        run: npm install -g html-validator-cli
+      - name: Install validator
+        run: npm install -g html-validate stylelint
       
       - name: Validate HTML
-        run: html-validator --file location.html --verbose
-      
-      - name: Install CSS validator
-        run: npm install -g css-validator
+        run: npx html-validate location.html
       
       - name: Validate CSS
-        run: css-validator styles.css
+        run: npx stylelint "**/*.css"
 
   deploy:
     needs: validate
     if: github.ref == 'refs/heads/main' && github.event_name == 'push'
     runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
+      
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+      
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: '.'
       
       - name: Deploy to GitHub Pages
-        uses: JamesIves/github-pages-deploy-action@v4
-        with:
-          folder: .
-          branch: gh-pages
-          token: ${{ secrets.GITHUB_TOKEN }}
-          
+        id: deployment
+        uses: actions/deploy-pages@v4
+      
       - name: Website deployed successfully
-        run: echo "🚀 Website deployed to https://$(echo ${{ github.repository }} | cut -d'/' -f1).github.io/$(echo ${{ github.repository }} | cut -d'/' -f2)/"
+        run: echo "🚀 Website deployed successfully to ${{ steps.deployment.outputs.page_url }}"
