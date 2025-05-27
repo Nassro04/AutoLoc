@@ -1,0 +1,48 @@
+name: Deploy AutoLoc Website
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      
+      - name: Install HTML validator
+        run: npm install -g html-validator-cli
+      
+      - name: Validate HTML
+        run: html-validator --file location.html --verbose
+      
+      - name: Install CSS validator
+        run: npm install -g css-validator
+      
+      - name: Validate CSS
+        run: css-validator styles.css
+
+  deploy:
+    needs: validate
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: .
+          branch: gh-pages
+          token: ${{ secrets.GITHUB_TOKEN }}
+          
+      - name: Website deployed successfully
+        run: echo "🚀 Website deployed to https://$(echo ${{ github.repository }} | cut -d'/' -f1).github.io/$(echo ${{ github.repository }} | cut -d'/' -f2)/"
