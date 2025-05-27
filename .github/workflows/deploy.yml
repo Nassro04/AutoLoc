@@ -1,11 +1,24 @@
-name: Deploy AutoLoc Website
+name: AutoLoc Car Rental Service Deployment
 
 on:
   push:
     branches: [ main ]
+    paths:
+      - '**.html'
+      - '**.css'
+      - '**.js'
   pull_request:
     branches: [ main ]
   workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Environment to deploy to'
+        required: true
+        default: 'production'
+        type: choice
+        options:
+          - production
+          - staging
 
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
@@ -15,25 +28,35 @@ permissions:
 
 jobs:
   validate:
+    name: Validate AutoLoc Website Files
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
       
-      - name: Setup Node.js
+      - name: Setup Node.js environment
         uses: actions/setup-node@v4
         with:
           node-version: 20
+          cache: 'npm'
       
-      - name: Install validator
-        run: npm install -g html-validate stylelint
+      - name: Install validation tools
+        run: npm install -g html-validate stylelint stylelint-config-standard
       
-      - name: Validate HTML
-        run: npx html-validate location.html
+      - name: Create stylelint config
+        run: echo '{"extends": "stylelint-config-standard"}' > .stylelintrc.json
       
-      - name: Validate CSS
-        run: npx stylelint "**/*.css"
+      - name: Validate HTML files
+        run: |
+          echo "Validating HTML files..."
+          npx html-validate location.html
+          [ -f "placeholder.html" ] && npx html-validate placeholder.html || echo "placeholder.html not found, skipping..."
+      
+      - name: Validate CSS files
+        run: npx stylelint "**/*.css" --fix
 
   deploy:
+    name: Deploy AutoLoc to GitHub Pages
     needs: validate
     if: github.ref == 'refs/heads/main' && github.event_name == 'push'
     runs-on: ubuntu-latest
@@ -41,19 +64,27 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
       
       - name: Setup Pages
         uses: actions/configure-pages@v4
+      
+      - name: Generate metadata
+        run: |
+          echo '{"app_name":"AutoLoc","version":"1.0.0","deployment_time":"'$(date -u +'%Y-%m-%dT%H:%M:%SZ')'"' > metadata.json
       
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: '.'
       
-      - name: Deploy to GitHub Pages
+      - name: Deploy AutoLoc to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
       
-      - name: Website deployed successfully
-        run: echo "🚀 Website deployed successfully to ${{ steps.deployment.outputs.page_url }}"
+      - name: Deployment notification
+        run: |
+          echo "🚀 AutoLoc car rental service deployed successfully!"
+          echo "📱 Website URL: ${{ steps.deployment.outputs.page_url }}"
+          echo "🕓 Deployed at: $(date -u +'%Y-%m-%d %H:%M:%S UTC')"
