@@ -1,0 +1,17 @@
+{
+  "routes": [
+    {
+      "route": "/*",
+      "serve": "/location.html",
+      "statusCode": 200
+    }
+  ],
+  "navigationFallback": {
+    "rewrite": "/location.html",
+    "exclude": ["/images/*.{png,jpg,gif}", "/css/*"]
+  },
+  "mimeTypes": {
+    ".html": "text/html",
+    ".css": "text/css"
+  }
+}
