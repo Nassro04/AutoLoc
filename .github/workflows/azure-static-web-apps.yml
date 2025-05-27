@@ -1,4 +1,4 @@
-name: Azure Static Web Apps CI/CD
+name: AutoLoc Azure Static Web Apps
 
 on:
   push:
@@ -13,23 +13,18 @@ jobs:
   build_and_deploy_job:
     if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
     runs-on: ubuntu-latest
-    name: Build and Deploy Job
+    name: Build and Deploy AutoLoc
     steps:
       - uses: actions/checkout@v4
         with:
           submodules: true
       
-      # Ensure we're using relative paths that work in GitHub Actions
-      - name: Prepare deployment
+      # Debug step to see what's in the repository
+      - name: List repository contents
         run: |
-          echo "Current directory structure:"
+          echo "Repository contents:"
           ls -la
-          echo "Creating deployment directory"
-          mkdir -p deploy
-          cp -r *.html *.css deploy/ 2>/dev/null || :
-          echo "Deployment directory contents:"
-          ls -la deploy/
-
+      
       - name: Build And Deploy
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v1
@@ -37,10 +32,11 @@ jobs:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           action: "upload"
-          # Use the relative path to the deploy directory we created
-          app_location: "deploy"
+          # Use the repository root for deployment
+          app_location: "/"
           api_location: ""
           output_location: ""
+          skip_app_build: true
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
