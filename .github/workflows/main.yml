@@ -22,6 +22,7 @@ jobs:
           # Copy HTML and CSS files
           cp *.html ./deploy_folder/ || echo "No HTML files found"
           cp *.css ./deploy_folder/ || echo "No CSS files found"
+          cp staticwebapp.config.json ./deploy_folder/ || echo "No config file found"
           
           # Show the directory structure for debugging
           echo "Files prepared for deployment:"
@@ -39,3 +40,5 @@ jobs:
           skip_app_build: true
           output_location: ""
           api_location: ""
+          # Skip deployment if token is missing (for local testing)
+          skip_deploy_on_missing_secrets: true
