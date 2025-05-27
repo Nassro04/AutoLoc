@@ -1,0 +1,272 @@
+/* Modern color palette */
+:root {
+    --primary: #3498db;
+    --secondary: #2ecc71;
+    --accent: #e74c3c;
+    --dark: #2c3e50;
+    --light: #ecf0f1;
+    --hover: #1abc9c;
+}
+
+/* Base styles */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--light);
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Header styling */
+header {
+    background: linear-gradient(135deg, var(--primary), var(--dark));
+    color: white;
+    padding: 2rem 0;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2.5rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    animation: fadeIn 1s ease-in;
+}
+
+/* Navigation bar */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--dark);
+    padding: 0.8rem 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Logo styling */
+.logo {
+    display: flex;
+    align-items: center;
+    color: white;
+    transition: all 0.3s ease;
+}
+
+.logo svg {
+    margin-right: 0.5rem;
+    fill: var(--primary);
+}
+
+.logo span {
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+}
+
+.logo:hover {
+    transform: scale(1.05);
+}
+
+/* Navigation links */
+.nav-links {
+    display: flex;
+    gap: 1rem;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+}
+
+nav a:hover {
+    background-color: var(--hover);
+    transform: translateY(-3px);
+}
+
+/* Main container */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    text-align: center;
+}
+
+/* Section titles */
+h2 {
+    color: var(--dark);
+    position: relative;
+    display: inline-block;
+    margin-bottom: 2rem;
+}
+
+h2:after {
+    content: '';
+    position: absolute;
+    width: 60%;
+    height: 3px;
+    background-color: var(--accent);
+    bottom: -10px;
+    left: 20%;
+}
+
+/* Car cards */
+.car-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.car {
+    border-radius: 10px;
+    padding: 1.5rem;
+    background-color: white;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    width: 300px;
+    overflow: hidden;
+}
+
+.car:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+}
+
+.car img {
+    max-width: 100%;
+    border-radius: 8px;
+    height: 180px;
+    object-fit: cover;
+}
+
+.car h3 {
+    color: var(--primary);
+    margin: 1rem 0 0.5rem;
+}
+
+.car p {
+    color: var(--dark);
+    font-weight: bold;
+}
+
+.car .price {
+    background-color: var(--secondary);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    display: inline-block;
+    margin-top: 0.5rem;
+}
+
+/* Footer */
+footer {
+    background: linear-gradient(135deg, var(--dark), #1a2530);
+    color: white;
+    text-align: center;
+    padding: 2rem 0;
+    margin-top: 3rem;
+}
+
+footer p {
+    margin: 0.5rem 0;
+}
+
+footer a {
+    color: var(--accent);
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+footer a:hover {
+    color: var(--secondary);
+    text-decoration: underline;
+}
+
+/* Button styling */
+.btn {
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    padding: 0.7rem 1.5rem;
+    border-radius: 30px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    margin-top: 1rem;
+    display: inline-block;
+}
+
+.btn:hover {
+    background-color: var(--hover);
+    transform: scale(1.05);
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2rem;
+    }
+    
+    nav {
+        flex-direction: column;
+        padding: 1rem;
+        gap: 1rem;
+    }
+    
+    .logo {
+        margin-bottom: 0.5rem;
+    }
+    
+    .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    nav a {
+        margin: 0.3rem;
+    }
+    
+    .car {
+        width: 100%;
+        max-width: 400px;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 1rem;
+    }
+    
+    header {
+        padding: 1.5rem 0;
+    }
+    
+    header h1 {
+        font-size: 1.5rem;
+    }
+    
+    h2 {
+        font-size: 1.2rem;
+    }
+}

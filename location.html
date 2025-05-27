@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Location de Voitures</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Bienvenue sur notre site de location de voitures</h1>
+    </header>
+    <nav>
+        <div class="logo">
+            <svg viewBox="0 0 640 512" width="30" height="30">
+                <path fill="currentColor" d="M544 192h-16L419.22 56.02A64.025 64.025 0 0 0 369.24 32H155.33c-26.17 0-49.7 15.93-59.42 40.23L48 194.26C20.44 201.4 0 226.21 0 256v112c0 8.84 7.16 16 16 16h48c0 53.02 42.98 96 96 96s96-42.98 96-96h128c0 53.02 42.98 96 96 96s96-42.98 96-96h48c8.84 0 16-7.16 16-16v-80c0-53.02-42.98-96-96-96zM160 432c-26.47 0-48-21.53-48-48s21.53-48 48-48 48 21.53 48 48-21.53 48-48 48zm72-240H116.93l38.4-96H232v96zm48 0V96h89.24l76.8 96H280zm200 240c-26.47 0-48-21.53-48-48s21.53-48 48-48 48 21.53 48 48-21.53 48-48 48z"/>
+            </svg>
+            <span>AutoLoc</span>
+        </div>
+        <div class="nav-links">
+            <a href="#home">Accueil</a>
+            <a href="#cars">Nos Voitures</a>
+            <a href="#services">Services</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
+    
+    <div class="container" id="home">
+        <h2>Location de voitures de qualité</h2>
+        <p>Nous vous proposons une large gamme de véhicules pour tous vos besoins de déplacement.</p>
+    </div>
+
+    <div class="container" id="cars">
+        <h2>Nos Voitures Disponibles</h2>
+        <div class="car-container">
+            <div class="car">
+                <svg viewBox="0 0 640 512" width="100%" height="180" style="background-color:#3498db;padding:20px;border-radius:8px;">
+                    <path fill="#fff" d="M544 192h-16L419.22 56.02A64.025 64.025 0 0 0 369.24 32H155.33c-26.17 0-49.7 15.93-59.42 40.23L48 194.26C20.44 201.4 0 226.21 0 256v112c0 8.84 7.16 16 16 16h48c0 53.02 42.98 96 96 96s96-42.98 96-96h128c0 53.02 42.98 96 96 96s96-42.98 96-96h48c8.84 0 16-7.16 16-16v-80c0-53.02-42.98-96-96-96zM160 432c-26.47 0-48-21.53-48-48s21.53-48 48-48 48 21.53 48 48-21.53 48-48 48zm72-240H116.93l38.4-96H232v96zm48 0V96h89.24l76.8 96H280zm200 240c-26.47 0-48-21.53-48-48s21.53-48 48-48 48 21.53 48 48-21.53 48-48 48z"/>
+                </svg>
+                <h3>Voiture Économique</h3>
+                <p>Idéale pour les déplacements en ville</p>
+                <span class="price">À partir de 20€/jour</span>
+                <a href="#" class="btn">Réserver</a>
+            </div>
+            <div class="car">
+                <svg viewBox="0 0 640 512" width="100%" height="180" style="background-color:#2ecc71;padding:20px;border-radius:8px;">
+                    <path fill="#fff" d="M152 64h240c39.77 0 72 32.24 72 72v16c0 39.77-32.23 72-72 72H152c-39.76 0-72-32.23-72-72v-16c0-39.76 32.24-72 72-72zm480 384c8.84 0 16-7.16 16-16v-32c0-8.84-7.16-16-16-16h-16V256h16c8.84 0 16-7.16 16-16v-32c0-8.84-7.16-16-16-16h-16V160c0-88.22-71.78-160-160-160H160C71.78 0 0 71.78 0 160v320c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V288h192v128c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V288h16v128h16c8.84 0 16-7.16 16-16v-32c0-8.84-7.16-16-16-16h-16v-32h128v32h-16c-8.84 0-16 7.16-16 16v32c0 8.84 7.16 16 16 16h16v32h16z"/>
+                </svg>
+                <h3>Voiture Familiale</h3>
+                <p>Parfaite pour vos voyages en famille</p>
+                <span class="price">À partir de 35€/jour</span>
+                <a href="#" class="btn">Réserver</a>
+            </div>
+            <div class="car">
+                <svg viewBox="0 0 640 512" width="100%" height="180" style="background-color:#e74c3c;padding:20px;border-radius:8px;">
+                    <path fill="#fff" d="M592.604 208.244C559.735 192.836 515.777 184 472 184H186.327c-4.952-6.555-10.585-11.978-16.72-16H376C229.157 137.747 219.403 32 96.003 32H96v128H80V32c-26.51 0-48 28.654-48 64v64c-23.197 0-32 10.032-32 24v40c0 13.983 8.819 24 32 24v16c-23.197 0-32 10.032-32 24v40c0 13.983 8.819 24 32 24v64c0 35.346 21.49 64 48 64V352h16v128h.003c123.4 0 133.154-105.747 279.997-136H169.606c6.135-4.022 11.768-9.445 16.72-16H472c43.777 0 87.735-8.836 120.604-24.244C622.282 289.845 640 271.992 640 256s-17.718-33.845-47.396-47.756zM488 296a8 8 0 0 1-8-8v-64a8 8 0 0 1 8-8c31.909 0 31.942 80 0 80z"/>
+                </svg>
+                <h3>Voiture de Luxe</h3>
+                <p>Pour une expérience de conduite premium</p>
+                <span class="price">À partir de 70€/jour</span>
+                <a href="#" class="btn">Réserver</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container" id="services">
+        <h2>Nos Services</h2>
+        <div class="car-container">
+            <div class="car">
+                <svg viewBox="0 0 640 512" width="100%" height="180" style="background-color:#9b59b6;padding:20px;border-radius:8px;">
+                    <path fill="#fff" d="M624 352h-16V243.9c0-12.7-5.1-24.9-14.1-33.9L494 110.1c-9-9-21.2-14.1-33.9-14.1H416V48c0-26.5-21.5-48-48-48H112C85.5 0 64 21.5 64 48v48H8c-4.4 0-8 3.6-8 8v16c0 4.4 3.6 8 8 8h272c4.4 0 8 3.6 8 8v16c0 4.4-3.6 8-8 8H40c-4.4 0-8 3.6-8 8v16c0 4.4 3.6 8 8 8h208c4.4 0 8 3.6 8 8v16c0 4.4-3.6 8-8 8H8c-4.4 0-8 3.6-8 8v16c0 4.4 3.6 8 8 8h208c4.4 0 8 3.6 8 8v16c0 4.4-3.6 8-8 8H64v128c0 53 43 96 96 96s96-43 96-96h128c0 53 43 96 96 96s96-43 96-96h48c8.8 0 16-7.2 16-16v-32c0-8.8-7.2-16-16-16zM160 464c-26.5 0-48-21.5-48-48s21.5-48 48-48 48 21.5 48 48-21.5 48-48 48zm320 0c-26.5 0-48-21.5-48-48s21.5-48 48-48 48 21.5 48 48-21.5 48-48 48zm80-208H416V144h44.1l99.9 99.9V256z"/>
+                </svg>
+                <h3>Location Longue Durée</h3>
+                <p>Profitez de tarifs avantageux pour des locations de plus d'une semaine</p>
+                <a href="#" class="btn">En savoir plus</a>
+            </div>
+            <div class="car">
+                <svg viewBox="0 0 640 512" width="100%" height="180" style="background-color:#34495e;padding:20px;border-radius:8px;">
+                    <path fill="#fff" d="M512.509 192.001c-16.373-.064-32.03 2.955-46.436 8.495l-77.68-125.153A24 24 0 0 0 368.001 64h-64c-8.837 0-16 7.163-16 16v16c0 8.837 7.163 16 16 16h50.649l14.896 24H256.002v-16c0-8.837-7.163-16-16-16h-87.459c-13.441 0-24.777 10.999-24.536 24.437.232 13.044 10.876 23.563 23.995 23.563h48.726l-29.417 47.52c-13.433-4.83-27.904-7.483-42.992-7.52C58.094 191.83.412 249.012.002 319.236-.413 390.279 57.055 448 128.002 448c59.642 0 109.758-40.793 123.967-96h52.033a24 24 0 0 0 20.406-11.367L410.37 201.77l14.938 24.067c-25.455 23.448-41.385 57.081-41.307 94.437.145 68.833 57.899 127.051 126.729 127.719 70.606.685 128.181-55.803 129.255-125.996 1.086-70.941-56.526-129.72-127.476-129.996zM186.75 265.772c9.727 10.529 16.673 23.661 19.642 38.228h-43.306l23.664-38.228zM128.002 400c-44.112 0-80-35.888-80-80s35.888-80 80-80c5.869 0 11.586.653 17.099 1.859l-45.505 73.509C89.715 331.327 101.213 352 120.002 352h81.3c-12.37 28.225-40.562 48-73.3 48zm162.63-96h-35.624c-3.96-31.756-19.556-59.894-42.383-80.026L237.371 184h127.547l-74.286 120zm217.057 95.886c-41.036-2.165-74.049-35.692-75.627-76.755-.812-21.121 6.633-40.518 19.335-55.263l44.433 71.586c4.66 7.508 14.524 9.816 22.032 5.156l13.594-8.437c7.508-4.66 9.817-14.524 5.156-22.032l-44.468-71.643a79.901 79.901 0 0 1 19.858-2.497c44.112 0 80 35.888 80 80-.001 45.54-38.252 82.316-84.313 79.885z"/>
+                </svg>
+                <h3>Assurance Tous Risques</h3>
+                <p>Conduisez en toute sérénité avec notre assurance complète</p>
+                <a href="#" class="btn">En savoir plus</a>
+            </div>
+        </div>
+    </div>
+
+    <footer id="contact">
+        <h2>Contactez-nous</h2>
+        <p>Email: <a href="mailto:contact@locationvoiture.com">contact@locationvoiture.com</a></p>
+        <p>Téléphone: +33 1 23 45 67 89</p>
+        <p>Adresse: 123 Avenue des Voitures, 75000 Paris</p>
+        <p>&copy; 2025 Location de Voitures. Tous droits réservés.</p>
+    </footer>
+</body>
+</html>
